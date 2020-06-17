@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标经过，修改图片路径</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Tahoma;background-color: black;}
+        body,ul,li,div{margin: 0;padding: 0;}
+        ul{list-style-type: none;}
+        a:link,a:visited,a:hover{text-decoration: none;}
+        img{border: 0;border-radius: 3px;}
+        #box{
+            width: 212px;
+            margin: 10px auto;
+            overflow: hidden;
+            background-color: white;
+            border-radius: 5px;
+            padding: 0 0 3px 3px;
+            border: white solid 5px;
+            /*zoom: 1;*/
+        }
+        li,li img{
+            float: left;
+            width: 50px;
+            height: 50px;
+        }
+        li{
+            margin-top: 3px;
+            margin-right: 3px;
+        }
+        li.first,li.first img{
+            width: 156px;
+            height: 156px;
+        }
+        .first{position: relative;}
+        .first>div{
+            position: absolute;
+            width: 156px;
+            height: 156px;
+            top: 0;
+            left: 0;
+            opacity: 50%;
+            filter: alpha(opacity=50);
+            display: none;
+            background: white url("img/loading.gif") 50% 50% no-repeat;
+        }
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#box>li").each(function (i) {
+                i !==0 && $(this).mouseenter(function () {
+                    let _img = new Image();
+                    $("#box .first>img").attr("src",$("#box img")[i].src.replace(/small/,'big'));
+                    // $(".first>div").css("display","block");
+                    _img.complete ? $(".first>div").css("display","none") : $(".first>div").css("display","block");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <ul id="box">
+        <li class="first"><img src="img/big_1.jpg"><div></div></li>
+        <li><a href="javascript:"><img src="img/small_1.jpg"></a></li>
+        <li><a href="javascript:"><img src="img/small_2.jpg"></a></li>
+        <li><a href="javascript:"><img src="img/small_3.jpg"></a></li>
+        <li><a href="javascript:"><img src="img/small_4.jpg"></a></li>
+        <li><a href="javascript:"><img src="img/small_5.jpg"></a></li>
+        <li><a href="javascript:"><img src="img/small_6.jpg"></a></li>
+        <li><a href="javascript:"><img src="img/small_7.jpg"></a></li>
+        <li><a href="javascript:"><img src="img/small_8.jpg"></a></li>
+        <li><a href="javascript:"><img src="img/small_9.jpg"></a></li>
+        <li><a href="javascript:"><img src="img/small_10.jpg"></a></li>
+        <li><a href="javascript:"><img src="img/small_11.jpg"></a></li>
+    </ul>
+</body>
+</html>

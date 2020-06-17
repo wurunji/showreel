@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易JS年历</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Tahoma;}
+        body,div,ul,li{margin: 0;padding: 0;}
+        #outer{
+            width: 248px;
+            margin: 10px auto;
+            background-color: #eaeaea;
+            overflow: hidden;
+            padding: 10px 0 10px 10px;
+        }
+        ul,li{list-style: none;}
+        #date li{
+            float: left;
+            width: 40px;
+            height: 40px;
+            background-color: #424242;
+            color: white;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            line-height: 1.2;
+            padding: 5px;
+            border: #424242 solid 1px;
+            cursor:pointer;
+        }
+        #date strong{font-size: 18px;}
+        #date span{line-height: 1.5;}
+        #date li.oDate{color: #ff6699;background-color: #ffffff;}
+        #festival{
+            float: left;
+            width: 226px;
+            border: white solid 1px;
+            background-color: #f1f1f1;
+            color: #666;
+            padding: 5px;
+        }
+        #festival strong{font-size: 14px;}
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            localDate();
+            //两种写法
+            // $.each($("#date>li"),function (i) {
+            $("#date>li").each(function (i) {
+                $(this).hover(function () {
+                    $("#date>li").removeClass("oDate");
+                    $(this).addClass("oDate");
+                    showMsg(i);
+                });
+            });
+        });
+        function showMsg(index) {
+            let msg = [
+                ["1&nbsp月节日","元旦：1月1日至3日放假三天。"],
+                ["2&nbsp月节日","春节：2月2日至8日放假7天。"],
+                ["3&nbsp月节日","妇女节：3月8日妇女节，与我无关。"],
+                ["4&nbsp月节日","清明节：4月3日至5日放假3天"],
+                ["5&nbsp月节日","劳动节：4月30日至5月2日放假3天。"],
+                ["6&nbsp月节日","端午节：6月4日至6日放假3天。"],
+                ["7&nbsp月节日","小暑：7月7日小暑。不放假。"],
+                ["8&nbsp月节日","七夕节：8月6日七夕节。不放假。"],
+                ["9&nbsp月节日","中秋节：9月10日至12日放假3天。"],
+                ["10&nbsp月节日","国庆节：10月1日至7日放假7天。"],
+                ["11&nbsp月节日","立冬：11月8日立冬。不放假。"],
+                ["12&nbsp月节日","艾滋病日:12月1日<br>废除奴隶制国际日:12月2日。"]
+            ];
+            $("#festival>strong").html(msg[index][0]);
+            $("#festival>span").html(msg[index][1]);
+        }
+        function localDate() {
+            let month = (new Date()).getMonth();//month值为当前月份减一
+            $("#date>li").eq(month).addClass("oDate");
+            showMsg(month);
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <ul id="date">
+            <li><strong>1</strong><br><span>JAN</span></li>
+            <li><strong>2</strong><br><span>FER</span></li>
+            <li><strong>3</strong><br><span>MAR</span></li>
+            <li><strong>4</strong><br><span>APR</span></li>
+            <li><strong>5</strong><br><span>MAY</span></li>
+            <li><strong>6</strong><br><span>JUN</span></li>
+            <li><strong>7</strong><br><span>JUL</span></li>
+            <li><strong>8</strong><br><span>AUG</span></li>
+            <li><strong>9</strong><br><span>SEP</span></li>
+            <li><strong>10</strong><br><span>OCT</span></li>
+            <li><strong>11</strong><br><span>NOV</span></li>
+            <li><strong>12</strong><br><span>DEC</span></li>
+        </ul>
+        <div id="festival">
+            <strong>1&nbsp月节日</strong><br><span>春节：1月1日</span>
+        </div>
+    </div>
+</body>
+</html>

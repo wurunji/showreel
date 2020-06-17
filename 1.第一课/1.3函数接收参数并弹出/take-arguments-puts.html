@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数接收参数并弹出</title>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <style>
+        body,label,input{margin: 0;padding: 0}
+        label{
+            margin: 0 auto;
+        }
+        #city,#district{
+            display: block;
+            width: 137px;
+            height: 16px;
+            margin: 12px auto 0;
+            padding: 3px;
+            border: #ccc solid 1px;
+        }
+        #submit{
+            display: block;
+            width: 48px;
+            height: 23px;
+            margin: 12px auto;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+           $("#submit").click(function () {
+              alert($("#city").val());
+              alert($("#district").val());
+           });
+        });
+    </script>
+</head>
+<body>
+    <label>
+        <input id="city" value="北京市">
+        <input id="district" value="朝阳区">
+        <input id="submit" type="button" value="传参">
+    </label>
+</body>
+</html>

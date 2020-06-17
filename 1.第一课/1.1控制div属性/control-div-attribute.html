@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>控制div属性</title>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <style type="text/css">
+        #div2{
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            let square = $("#div2");
+            //将id为div2的对象赋值给square
+            $("#toWider").click(function () {
+                square.width(200);
+            });
+            $("#toHigher").click(function () {
+                square.height(200);
+            });
+            $("#turnColors").click(function () {
+                square.css("background-color","red");
+            });
+            $("#hide").click(function () {
+                square.css("display","none");
+            });
+            $("#reset").click(function () {
+                square.removeAttr("style");
+                //删除style属性，即删除内联样式。
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="div1" style="width: 500px;margin: 0 auto;text-align: center">
+        <input type="button" id="toWider" value="变宽"/>
+        <input type="button" id="toHigher" value="变高"/>
+        <input type="button" id="turnColors" value="变色"/>
+        <input type="button" id="hide" value="隐藏"/>
+        <input type="button" id="reset" value="重置"/>
+        <div id="div2"></div>
+    </div>
+</body>
+</html>

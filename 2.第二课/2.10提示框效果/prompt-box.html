@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提示框效果</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Tahoma;}
+        body,div,ul,li,h2{margin: 0;padding: 0;}
+        #outer{
+            width: 560px;
+            margin: 10px auto;
+            border: black solid 1px;
+            padding-left: 10px;
+            padding-bottom: 10px;
+            overflow: hidden;
+        }
+        ul{list-style-type: none;}
+        h2{
+            text-align: center;
+            margin-top: 9px;
+            padding: 2px;
+        }
+        #logoName>li{
+            float: left;
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+            margin-top: 10px;
+            border: black solid 1px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            color: #666666;
+            cursor: crosshair;
+            z-index: 2002;
+        }
+        #autoLogos{
+            position: absolute;
+        }
+        #autoLogos>li{
+            border: 2px solid #999999;
+            position: absolute;
+            width: 128px;
+            height: 128px;
+            display: none;
+            cursor: crosshair;
+            z-index: 2001;
+        }
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            let _logo = $("#autoLogos>li");
+            let _name = $("#logoName>li");
+            for (let i in _logo){
+                i<5 ? logoDisplay(0,i) : logoDisplay(1,i);
+            }
+            _name.each(function (i) {
+                $(this).hover(function () {
+                    _logo.eq(i).css("display","block");
+                },function () {
+                    _logo.eq(i).css("display","none");
+                });
+            });
+            _logo.each(function (i) {
+                $(this).hover(function () {
+                    $(this).css("display","block");
+                },function () {
+                    $(this).css("display","none");
+                });
+            });
+        });
+        function logoDisplay(index,count) {
+            let _iLeft = 112*count - 560*index - 13;
+            let _iTop = 112*index - 3;
+            let _left = _iLeft + "px";
+            let _top = _iTop + "px";
+            $("#autoLogos>li").eq(count).css({"left":_left,"top":_top});
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <h2>名车车标展示-鼠标移过显示车标</h2>
+        <ul id="logoName">
+            <li><strong>BMW</strong><br>宝马汽车</li>
+            <li><strong>Alfa Romeo</strong><br>阿尔法-罗米欧</li>
+            <li><strong>Skoda</strong><br>斯柯达</li>
+            <li><strong>Volkswagen</strong><br>大众汽车</li>
+            <li><strong>Saab</strong><br>萨布牌轿车</li>
+            <li><strong>Lamborghini</strong><br>兰博基尼</li>
+            <li><strong>Porsche</strong><br>保时捷</li>
+            <li><strong>Peugeot</strong><br>标致</li>
+            <li><strong>Mercedes1</strong><br>梅赛德斯&nbsp;奔驰</li>
+            <li><strong>Buick</strong><br>别克汽车</li>
+        </ul>
+        <ul id="autoLogos">
+            <li><img src="img/1.jpg"></li>
+            <li><img src="img/2.jpg"></li>
+            <li><img src="img/3.jpg"></li>
+            <li><img src="img/4.jpg"></li>
+            <li><img src="img/5.jpg"></li>
+            <li><img src="img/6.jpg"></li>
+            <li><img src="img/7.jpg"></li>
+            <li><img src="img/8.jpg"></li>
+            <li><img src="img/9.jpg"></li>
+            <li><img src="img/10.jpg"></li>
+        </ul>
+    </div>
+</body>
+</html>

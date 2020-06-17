@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>输入两个数字，比较大小</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Arial;text-align: center;}
+        .ipt{
+            width: 48px;
+            padding: 3px;
+            background-color: #f0f0f0;
+            border: #ccc solid 1px;
+        }
+        strong{padding: 0 10px;}
+        body>input:last-of-type{margin: 0 10px;}
+        span{color: red;font-weight: 700}
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".ipt").each(function () {
+                $(this).keyup(function () {
+                    $(this).val($(this).val().replace(/[^\d]/g,""));
+                });
+            });
+        });
+        function compare() {
+            let _data1 = $(".ipt").eq(0).val();
+            let _data2 = $(".ipt").eq(1).val();
+            (/\d/.test(_data1)&&/\d/.test(_data2)) ?
+                parseInt(_data1)>=parseInt(_data2) ?
+                    $("span").html(_data1) :
+                    $("span").html(_data2) :
+                alert("请输入数字");
+        }
+    </script>
+</head>
+<body>
+    <input class="ipt" type="text">
+    <strong>vs</strong>
+    <input class="ipt" type="text">
+    <input type="button" value="最大的数是 »" onclick="compare()">
+    <span>?</span>
+</body>
+</html>

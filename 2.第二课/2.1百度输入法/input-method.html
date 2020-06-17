@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度输入法</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Tahoma;}
+        body,div,input,ul,li,a{margin: 0;padding: 0;}
+        ul,li{list-style-type: none;}
+        #outer{
+            width: 70px;
+            margin: 10px auto;
+        }
+        #check{cursor: pointer;}
+        #ime{
+            border: #9a99ff solid 1px;
+            margin-top: 5px;
+            background-color: #fff;
+            vertical-align: top;
+            display: none;
+        }
+        #ime li{
+            width: 100%;
+            line-height: 24px;
+            display: inline-block;
+        }
+        #ime li:hover{background-color: #d9e1f6;}
+        #ime li a{
+            text-decoration: none;
+            display: block;
+            padding: 0 5px;
+            color: #00c;
+        }
+        #ime li:last-child{border-top: #9a99ff solid 1px;}
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#check").on("click",function () {
+                // $("#ime").css("display") === "none" ? $("#ime").css("display","block") : $("#ime").css("display","none");
+                $("#ime").toggle();
+            });
+            $("#close").click(function () {
+                $("#ime").css("display","none");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <input id="check" type="button" value="输入法">
+        <ul id="ime">
+           <li><a href="javascript:">手写</a> </li>
+           <li><a href="javascript:">拼音</a> </li>
+           <li><a href="javascript:" id="close">关闭</a> </li>
+        </ul>
+    </div>
+</body>
+</html>

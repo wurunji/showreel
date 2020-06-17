@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标移入/移出改变样式</title>
+    <style>
+        #div1{
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            border: black solid 10px;
+            padding: 10px;
+            font: 12px/1.5 Tahoma;
+            background-color: black;
+            color: white;
+        }
+        #div1.hover{
+            border-color: red;
+            color: red;
+            background-color: #f0f0f0;
+            cursor: crosshair;
+        }
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        //错误写法
+        // $(document).ready(function () {
+        //     $("#div1").mouseover($(this).addClass("hover")).mouseout($(this).removeClass("hover"));
+        // });
+        //方法一
+        // $(function () {
+        //     $("#div1").mouseover(function () {
+        //         $(this).addClass("hover");
+        //     }).mouseout(function () {
+        //         $(this).removeClass("hover");
+        //     });
+        // });
+        //方法二
+        $(function () {
+            $("#div1").hover(function () {
+                $(this).addClass("hover");
+            },function () {
+                $(this).removeClass("hover");
+            });
+        });
+        //方法三
+        // $(function () {
+        //     $("#div1").mouseenter(function () {
+        //         $(this).addClass("hover");
+        //     }).mouseleave(function () {
+        //         $(this).removeClass("hover");
+        //     });
+        // });
+    </script>
+</head>
+<body>
+    <div id="div1" class="">
+        <span>鼠标移入改变样式，鼠标移出恢复。</span>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单一按钮显示隐藏</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Tahoma;}
+        body,div,ul,li{
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -ms-user-select: none;
+        }
+        ul{list-style-type: none;}
+        a{color: #6b7980;}
+        a:link,a:visited{text-decoration: none;}
+        a:hover{text-decoration: underline;}
+        #outer{
+            width: 200px;
+            margin: 10px auto;
+            border: #aaaaaa solid 1px;
+        }
+        #open{
+            height: 30px;
+            background-color: #ced3d7;
+            font-size: 14px;
+            color: #50646e;
+            line-height: 30px;
+            padding-left: 10px;
+            padding-right: 10px;
+            cursor: pointer;
+            margin: 1px;
+        }
+        .arrowsOn{
+            width: 0;
+            height: 0;
+            border-top: #000000 solid 4px;
+            border-right: transparent solid 4px;
+            border-left: transparent solid 4px;
+            top: 50%;
+            position: relative;
+            float: right;
+        }
+        .arrowsOff{
+            width: 0;
+            height: 0;
+            border-bottom: black solid 4px;
+            border-left: transparent solid 4px;
+            border-right: transparent solid 4px;
+            top: 50%;
+            position: relative;
+            float: right;
+        }
+        li{
+            height: 25px;
+            line-height: 25px;
+            background-color: #e9edf2;
+            padding-left: 10px;
+        }
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#open").click(function () {
+                let _arrows = $("#arrows");
+                let _list = $("#outer>ul");
+                switch(_arrows.attr("class")){
+                    case 'arrowsOn':_arrows.removeClass("arrowsOn").addClass("arrowsOff");
+                                    _list.css("display","none");
+                                    break;
+                    case 'arrowsOff':_arrows.removeClass("arrowsOff").addClass("arrowsOn");
+                                    _list.css("display","block");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <div id="open">播放列表...<div id="arrows" class="arrowsOff"></div></div>
+        <ul style="display: none">
+            <li><a href="javascript:">玩家之徒 - 蔡依林</a></li>
+            <li><a href="javascript:">原谅我就是这样的女生 - 戴佩妮</a></li>
+            <li><a href="javascript:">猜不透 - 丁当</a></li>
+            <li><a href="javascript:">自导自演 - 周杰伦</a></li>
+            <li><a href="javascript:">浪漫窝 - 弦子</a></li>
+            <li><a href="javascript:">流年 - 王菲</a></li>
+        </ul>
+    </div>
+</body>
+</html>

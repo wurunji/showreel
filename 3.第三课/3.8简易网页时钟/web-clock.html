@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易网页时钟</title>
+    <style type="text/css">
+        body{font: 16px/1.5 Arial;text-align: center;color: white}
+        body,div,input,span{margin: 0;padding: 0;}
+        #outer{
+            width: 300px;
+            height: 72px;
+            margin: 10px auto;
+            background-color: black;
+            line-height: 75px;
+        }
+        #outer input{
+            width: 33px;
+            height: 17px;
+            color: black;
+            background-color: white;
+            border: peachpuff solid 3px;
+            font: 15px/1.5 Arial;
+            text-align: center;
+        }
+        #outer span{margin: 0 5px;}
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            setInterval(showTime,1000);
+            showTime();
+            function showTime() {
+                let _date = new Date();
+                let _time = [_date.getHours(),_date.getMinutes(),_date.getSeconds()];
+                $("#outer>input").each(function (i) {
+                    _time[i].toString().length<2 && (_time[i] = '0' + _time[i].toString());
+                    $(this).val(_time[i]);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <input type="text" readonly="readonly" value="0">
+        <span>点</span>
+        <input type="text" readonly="readonly" value="0">
+        <span>分</span>
+        <input type="text" readonly="readonly" value="0">
+        <span>秒</span>
+    </div>
+</body>
+</html>

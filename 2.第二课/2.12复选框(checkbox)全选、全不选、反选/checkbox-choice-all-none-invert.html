@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>复选框(checkbox)全选/全不选/反选</title>
+    <style type="text/css">
+        body{font: 12px Tahoma;}
+        body,dl,dt,dd,p{margin: 0;padding: 0;}
+        a{text-decoration: none;color: #09f;}
+        a:hover{color: red;}
+        label,input,a{vertical-align: middle;}
+        dl{
+            width: 120px;
+            margin: 10px auto;
+            border: #666 solid 1px;
+            border-radius: 5px;
+            padding: 10px 5px;
+            background-color: #fafafa;
+        }
+        dt{
+            padding-bottom: 10px;
+            border-bottom: black solid 1px;
+        }
+        dt>label{font-weight: 700;}
+        label{padding: 0 10px 0 5px;}
+        p{margin-top: 10px;}
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            let _data = $("input[name='item']");
+            let _dTitle = $("#checkAll");
+            _data.prop("checked",false);
+            _dTitle.prop("checked",false);
+            _dTitle.change(function () {
+                if (this.checked){
+                    _data.prop("checked",true);
+                    $(this).next().html("全不选");
+                }
+                else {
+                    _data.prop("checked",false);
+                    $(this).next().html("全选");
+                }
+            });
+            _data.change(function () {
+                // let n = 0;
+                // _data.each(function (i) {
+                //     _data[i].checked && n++;
+                // });
+                // n === 10 ?
+                //     _dTitle.prop("checked",true).next().html("全不选") :
+                //     _dTitle.prop("checked",false).next().html("全选");
+                let bAll = bCheckAll();
+                _dTitle.prop("checked",bAll[0]).next().html(bAll[1]);
+            });
+            _dTitle.next().next().click(function () {
+                _data.each(function (i) {
+                    if (this.checked){
+                        $(_data[i]).prop("checked",false);
+                    }
+                    else{
+                        $(_data[i]).prop("checked",true);
+                    }
+                });
+                let bAll = bCheckAll();
+                _dTitle.prop("checked",bAll[0]).next().html(bAll[1]);
+            });
+            function bCheckAll() {
+                let bCheck = [true,"全不选"];
+                let n=0;
+                _data.each(function (i) {
+                    this.checked ? n=1 : bCheck = [false,"全选"];
+                });
+                return bCheck;
+            }
+        });
+    </script>
+</head>
+<body>
+    <dl>
+        <dt><input id="checkAll" type="checkbox"><label>全选</label><a href="javascript:">反选</a></dt>
+        <dd>
+            <p><input type="checkbox" name="item"><label>选项（一）</label></p>
+            <p><input type="checkbox" name="item"><label>选项（二）</label></p>
+            <p><input type="checkbox" name="item"><label>选项（三）</label></p>
+            <p><input type="checkbox" name="item"><label>选项（四）</label></p>
+            <p><input type="checkbox" name="item"><label>选项（五）</label></p>
+            <p><input type="checkbox" name="item"><label>选项（六）</label></p>
+            <p><input type="checkbox" name="item"><label>选项（七）</label></p>
+            <p><input type="checkbox" name="item"><label>选项（八）</label></p>
+            <p><input type="checkbox" name="item"><label>选项（九）</label></p>
+            <p><input type="checkbox" name="item"><label>选项（十）</label></p>
+        </dd>
+    </dl>
+    <center>1、切换全选/全不选文字；2、根据选中个数更新全选框状态；</center>
+</body>
+</html>

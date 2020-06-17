@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页换肤</title>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <style type="text/css">
+        a:visited,a:link{text-decoration: none;}
+        a:hover{text-decoration: underline;}
+        a{color: white;font: 12px/1.5 Tahoma;}
+        li{list-style-type: none;}
+        :root{background-color: mediumseagreen;}
+        body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            width: 500px;
+            margin: 0 auto;
+        }
+        #skin{
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        #nav{
+            overflow: hidden;
+            border: white solid 1px;
+            margin: 10px 0;
+        }
+        #skin li{
+            width: 6px;
+            height: 6px;
+            float: left;
+            overflow: hidden;
+            margin-right: 10px;
+            border-style: solid;
+            border-width: 4px;
+        }
+        #nav li{
+            float: left;
+            width: 82px;
+            height: 25px;
+            text-align: center;
+            line-height: 22px;
+            background-color: forestgreen;
+            border-right: white solid 1px;
+            overflow: hidden;
+        }
+        #nav li:last-child{border-right: 0;}
+        #red{background-color: red;border-color: red;}
+        #green{background-color: green;border-color: green;}
+        #black{background-color: black;border-color: black;}
+        .choice{background-color: white !important;}
+    </style>
+    <script>
+        $(document).ready(function () {
+            let colors = ["red","green","black"];
+            let bkColors = ["#FDD","#A3C5A8","#ccc"];
+            let type = [$("#red"),$("#green"),$("#black")];
+            let index = 1;
+            type[index].addClass("choice");
+            replace(colors[index],bkColors[index]);
+            $("#skin>li").on("click",function () {
+                $(".choice").removeClass("choice");
+                $(this).addClass("choice");
+                for (let i=0;i<type.length;i++){
+                    type[i].hasClass("choice") && (replace(colors[i],bkColors[i]));
+                    //a&&b||c相当于a?b:c
+                }
+            });
+        });
+        function replace(colors,bkColors) {
+            $("#nav>li").css("background-color",colors);
+            $(":root").css("background-color",bkColors);
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <ul id="skin">
+            <li id="red"></li>
+            <li id="green"></li>
+            <li id="black"></li>
+        </ul>
+        <ul id="nav">
+            <li><a href="javascript:">新闻</a></li>
+            <li><a href="#">娱乐</a></li>
+            <li><a href="javascript:void(0)">体育</a></li>
+            <li><a href="javascript:void(console.log('没有电影'))">电影</a></li>
+            <li><a href="javascript:void(alert('没有音乐')) ">音乐</a></li>
+            <li><a href="javascript:void(0)">旅游</a></li>
+        </ul>
+    </div>
+</body>
+</html>

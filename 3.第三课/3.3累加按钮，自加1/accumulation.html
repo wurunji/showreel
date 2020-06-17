@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>累加按钮，自加1</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Arial;text-align: center;}
+        input{cursor:pointer;padding: 0 10px;}
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        function sum() {
+            let _ipt = $("input");
+            _ipt.val(parseInt(_ipt.val()) + 1);
+            alert(_ipt.val());
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="0" onclick="sum()">
+</body>
+</html>

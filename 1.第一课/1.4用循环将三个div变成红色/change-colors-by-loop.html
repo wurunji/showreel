@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用循环将三个div变成红色</title>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <style>
+        body>div{
+            margin: 8px auto;
+            width: 330px;
+            text-align: center;
+        }
+        div>div{
+            float: left;
+            background-color: black;
+            width: 100px;
+            height: 100px;
+            margin: 2px 5px;
+        }
+    </style>
+    <script>
+        function changeColors() {
+            $("div>div").css("background-color","red");
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" value="点击将DIV变成红色" onclick="changeColors()">
+    </div>
+    <div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>

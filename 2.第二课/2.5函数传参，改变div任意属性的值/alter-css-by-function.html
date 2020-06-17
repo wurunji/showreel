@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数传参，改变div任意属性的值</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Tahoma;color: #333;}
+        body,div,p{margin: 0;padding: 0;}
+        #outer{
+            width: 300px;
+            margin: 0 auto;
+        }
+        p{
+            margin-top: 10px;
+        }
+        label{
+            width: 5em;
+            display: inline-block;
+            text-align: right;
+            margin-right: -4px;
+        }
+        input{
+            padding: 3px;
+            border: #ccc solid 1px;
+        }
+        button{
+            margin-right: 1px;
+        }
+        #div1{
+            color: #fff;
+            width: 180px;
+            height: 180px;
+            background-color: #000;
+            margin: 10px auto;
+            padding: 10px;
+        }
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("button:first").click(function () {
+                let name = $("#iName").val();
+                let val = $("#iValue").val();
+                $("#div1").css(name,val);
+            });
+            $("button:last").click(function () {
+                $("#div1").removeAttr("style","");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <p>
+            <label>属性名：</label>
+            <input id="iName" type="text" value="background">
+        </p>
+        <P>
+            <label>属性值：</label>
+            <input id="iValue" type="text" value="blue">
+        </P>
+        <p>
+            <label></label>
+            <button>确定</button>
+            <button>重置</button>
+        </p>
+    </div>
+    <div id="div1">在上方输入框输入"属性名"及"属性值"，点击确定按钮查看效果。</div>
+</body>
+</html>

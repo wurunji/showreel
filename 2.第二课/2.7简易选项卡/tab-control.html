@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简易选项卡</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Tahoma;}
+        body,div,nav,ul,li{margin: 0;padding: 0;}
+        a:link,a:visited{color:#000;text-decoration: none;}
+        a:hover{color:red;text-decoration: underline;}
+        #outer{
+            width: 448px;
+            border: black solid 1px;
+            margin: 10px auto;
+        }
+        nav{
+            width: 100%;
+            height: 30px;
+            background-color: #000;
+            color: white;
+            border-bottom: black solid 1px;
+        }
+        span{
+            display: block;
+            float: left;
+            width: 76px;
+            height: 100%;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+        ul{
+            margin: 0 30px;
+            padding: 9px 0 11px;
+            line-height: 25px;
+            display: none;
+        }
+        .oNav{
+            background-color: #ccc;
+            color: #000;
+        }
+        .oList{
+            display: block;
+        }
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            let _span = $("span");
+            let _ul = $("ul");
+            $("span:first").addClass("oNav");
+            $("ul:first").css("display","block");
+            for (let i in _ul){
+                _span.eq(i).hover(function () {
+                   _span.removeClass("oNav");
+                   _span.eq(i).addClass("oNav");
+                   _ul.removeAttr("style","");
+                   _ul.eq(i).attr("style","display:block")
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <nav>
+            <span>第一课</span>
+            <span>第二课</span>
+            <span>第三课</span>
+        </nav>
+        <ul>
+            <li><a href="javascript:">网页特效原理分析</a> </li>
+            <li><a href="javascript:">响应用户操作</a> </li>
+            <li><a href="javascript:">提示框效果</a> </li>
+            <li><a href="javascript:">事件驱动</a> </li>
+            <li><a href="javascript:">元素属性操作</a> </li>
+            <li><a href="javascript:">动手编写第一个JS特效</a> </li>
+            <li><a href="javascript:">引入函数</a> </li>
+            <li><a href="javascript:">网页换肤效果</a> </li>
+            <li><a href="javascript:">展开/收缩播放列表效果</a> </li>
+        </ul>
+        <ul>
+            <li><a href="javascript:">改变网页背景颜色</a> </li>
+            <li><a href="javascript:">函数传参</a> </li>
+            <li><a href="javascript:">高重用性函数的编写</a> </li>
+            <li><a href="javascript:">126邮箱全选效果</a> </li>
+            <li><a href="javascript:">循环及遍历操作</a> </li>
+            <li><a href="javascript:">调试器的简单使用</a> </li>
+            <li><a href="javascript:">典型循环的构成</a> </li>
+            <li><a href="javascript:">for循环配合if判断</a> </li>
+            <li><a href="javascript:">className的使用</a> </li>
+            <li><a href="javascript:">innerHTML的使用</a> </li>
+            <li><a href="javascript:">戛纳印象效果</a> </li>
+            <li><a href="javascript:">数组</a> </li>
+            <li><a href="javascript:">字符串连接</a> </li>
+        </ul>
+        <ul>
+            <li><a href="javascript:">JavaScript组成：ECMAScript、DOM、BOM，JavaScript兼容性来源</a> </li>
+            <li><a href="javascript:">JavaScript出现的位置、优缺点</a> </li>
+            <li><a href="javascript:">变量、类型、typeof、数据类型转换、变量作用域</a> </li>
+            <li><a href="javascript:">闭包：什么是闭包、简单应用、闭包缺点</a> </li>
+            <li><a href="javascript:">运算符：算术、赋值、关系、逻辑、其他运算符</a> </li>
+            <li><a href="javascript:">程序流程控制：判断、循环、跳出</a> </li>
+            <li><a href="javascript:">命名规范：命名规范及必要性、匈牙利命名法</a> </li>
+            <li><a href="javascript:">函数详解：函数构成、调用、事件、传参数、可变参、返回值</a> </li>
+            <li><a href="javascript:">定时器的使用：setInterval、setTimeout</a> </li>
+            <li><a href="javascript:">定时器应用：站长站导航效果</a> </li>
+            <li><a href="javascript:">定时器应用：自动播放的选项卡</a> </li>
+            <li><a href="javascript:">定时器应用：数码时钟</a> </li>
+            <li><a href="javascript:">程序调试方法</a> </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>求出数组中所有数字的和</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Tahoma;}
+        body,div,label{margin: 0;padding: 0;}
+        #outer{
+            width: 500px;
+            margin: 8px auto;
+        }
+        #input{
+            border: #ccc solid 1px;
+            width: 220px;
+            padding: 3px;
+            margin-right: 6px;
+        }
+        #outer>label{
+            color: #999;
+        }
+        #outer>div{
+            margin: 12px 0;
+        }
+        #result{
+            color: red;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 43px;
+        }
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#input").keyup(function () {
+                this.value = this.value.replace(/[^(\d)|(,)]/,"")
+            });
+            $("#oBtn").click(function () {
+                $("#result").html(getSum());
+            });
+        });
+        function getSum() {
+            let value = $('#input').val().split(",");
+            let sum = 0;
+            for (let i in value){
+                sum = sum + parseInt(value[i]);
+            }
+            return sum;
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <label>
+            <input id="input" type="text" value="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15">
+            输入数字求和，数字之间用半角","号分隔
+        </label>
+        <div>
+            <input id="oBtn" type="button" value="求和">
+        </div>
+        <div><span id="result"></span></div>
+    </div>
+</body>
+</html>

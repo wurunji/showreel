@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页计算器</title>
+    <style type="text/css">
+        body{font: 700 24px/1.5 Arial;user-select: none;}
+        body,div,p,input,ul,li{margin: 0;padding: 0;}
+        a{text-decoration: none;color: white;outline: none;}
+        ul{list-style-type: none;}
+        #calc{
+            width: 300px;
+            margin: 10px auto;
+            position: relative;
+        }
+        p{background-color: black;text-align: right;color: white;padding: 0 5px;font: 12px/20px Arial;}
+        #calc .face{
+            width: 290px;
+            height: 84px;
+            border: 0;
+            text-align: right;
+            font: 700 50px/84px Arial;
+            background: url("img/inputBg.jpg") repeat-x;
+            padding: 0 5px;
+        }
+        #calc ul{background: url("img/bg.jpg");position: relative;overflow: hidden;padding: 0 0 17px 8px;}
+        #calc ul li{float: left;width: 63px;height: 41px;margin: 17px 10px 0 0;}
+        #calc ul li a{
+            display: block;
+            width: 63px;
+            height: 41px;
+            text-align: center;
+            line-height: 41px;
+            background: url("img/btn.png") no-repeat;
+        }
+        #calc ul li a:hover{background-position-x: -63px;}
+        #calc ul li.btn-1 a{background-position-y: -41px;}
+        #calc ul li.btn-2 a{background-position-y: -164px;height: 99px;line-height: 99px;}
+        #calc ul li.btn-3{width: 136px;}
+        #calc ul li.btn-3 a{background-position-y: -82px;width: 136px;}
+        #calc ul li.btn-3 a:hover{background-position-y: -123px;}
+        #process{
+            position: absolute;
+            top: 20px;
+            width: 280px;
+            border: 0;
+            background: none;
+            text-align: right;
+            font: 700 12px/1.5 Arial;
+            padding: 3px 15px 0 5px;
+        }
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            let _iptResult = $(".face");
+            let _iptProcess = $("#process");
+            let s = false;
+            $("li>a").each(function (i) {
+                $(this).click(function () {
+                    switch ($(this).html()) {
+                        case 'c' :
+                            _iptResult.val('0');
+                            _iptProcess.val('');
+                            break;
+                        case '%' : break;
+                        case '÷' : operation('/');break;
+                        case '×' : operation('*');break;
+                        case '-' : operation('-');break;
+                        case '+' : operation('+');break;
+                        case '=' :
+                            if (!s){
+                                operation('');
+                                _iptResult.val(eval(_iptProcess.val().replace(/\/\*\-\+/,'')));
+                                _iptResult.val(_iptResult.val().substr(0,10).replace('Nan','0'));
+                                s = true;
+                            }
+                            break;
+                        case '.' :
+                            if(_iptResult.val().search(/[\.\%\/\*\-\+]/)>-1)
+                                break;
+                        default :
+                            s && (_iptProcess.val(''),_iptResult.val('0'),s = false);
+                            _iptResult.val().length<10 &&
+                                _iptResult.val((_iptResult.val()+$(this).html()).replace(/^[0\%\/\*\-\+](\d)/,'$1'));
+                    }
+                });
+            });
+            function operation(_sign) {
+                if (s){
+                    _iptProcess.val(_iptResult.val()+_sign);
+                    _iptResult.val(_sign);
+                    s = false;
+                }
+                else {
+                    ['/','*','-','+'].indexOf((_iptProcess.val()+_iptResult.val()).substr(-1,1))>-1 ?
+                        _iptProcess.val(_iptProcess.val().substr(0,(_iptProcess.val()).length-1)+_sign) :
+                        _iptProcess.val(_iptProcess.val()+_iptResult.val() +_sign);
+                    _iptResult.val(_sign);
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="calc">
+        <p>By-Mr.wu&nbsp;&nbsp;2020-5-13</p>
+        <input class="face" type="text" readonly="readonly" maxlength="9" value="0">
+        <ul>
+            <li class="btn-1"><a href="javascript:">c</a> </li>
+            <li class="btn-1"><a href="javascript:">%</a> </li>
+            <li class="btn-1"><a href="javascript:">÷</a> </li>
+            <li class="btn-1"><a href="javascript:">×</a> </li>
+            <li class="btn-num"><a href="javascript:">7</a> </li>
+            <li class="btn-num"><a href="javascript:">8</a> </li>
+            <li class="btn-num"><a href="javascript:">9</a> </li>
+            <li class="btn-1"><a href="javascript:">-</a> </li>
+            <li class="btn-num"><a href="javascript:">4</a> </li>
+            <li class="btn-num"><a href="javascript:">5</a> </li>
+            <li class="btn-num"><a href="javascript:">6</a> </li>
+            <li class="btn-1"><a href="javascript:">+</a> </li>
+            <li class="btn-num"><a href="javascript:">1</a></li>
+            <li class="btn-num"><a href="javascript:">2</a></li>
+            <li class="btn-num"><a href="javascript:">3</a></li>
+            <li class="btn-2"><a href="javascript:">=</a> </li>
+            <li class="btn-3"><a href="javascript:">0</a> </li>
+            <li class="btn-num"><a href="javascript:">.</a> </li>
+        </ul>
+        <input id="process" type="text" readonly="readonly" value="">
+    </div>
+</body>
+</html>

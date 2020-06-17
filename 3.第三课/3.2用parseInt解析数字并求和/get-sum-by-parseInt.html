@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用parseInt解析数字，并求和</title>
+    <style type="text/css">
+        body{font: 12px/1.5 Arial;text-align: center;}
+        .ipt{
+            width: 50px;
+            border: #ccc solid 1px;
+            background-color: #f0f0f0;
+            padding: 3px;
+        }
+        span{color:green;padding-right:10px;font-weight:700;}
+        strong{padding:0 10px;}
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".ipt").each(function (i) {
+                //输入非数字时自动删除
+                $(this).keyup(function () {
+                    this.value = this.value.replace(/[^\d]/g,"")
+                });
+            });
+        });
+        function sum() {
+            let _data1 = $(".ipt").eq(0).val();
+            let _data2 = $(".ipt").eq(1).val();
+            (/\d/g.test(_data1)&&/\d/g.test(_data2)) ?
+                $("form>span").html(parseInt(_data1)+parseInt(_data2)) :
+                alert("请输入数字");
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        <input class="ipt" type="text">
+        <strong>+</strong>
+        <input class="ipt" type="text">
+        <strong>=</strong>
+        <span>?</span>
+        <input type="button" value="求和" onclick="sum()">
+    </form>
+</body>
+</html>

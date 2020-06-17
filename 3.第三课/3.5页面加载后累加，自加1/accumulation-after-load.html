@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面加载后累加，自加1</title>
+    <style type="text/css">
+        body{font: 700 30px Arial;text-align: center;}
+    </style>
+    <script src="../../../library/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            let count = 0;
+            setInterval(showCount,1000);
+            showCount();
+            function showCount() {
+                $("span").html(++count);
+            }
+        });
+    </script>
+</head>
+<body>
+    <span></span>
+</body>
+</html>
